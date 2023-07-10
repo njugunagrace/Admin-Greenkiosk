@@ -3,8 +3,8 @@ from customer.models import Customer
 
 # Create your models here.
 class Notifications(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     message = models.CharField(max_length=32)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     time = models.DateTimeField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
