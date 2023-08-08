@@ -3,7 +3,6 @@ from order_management.models import Order
 
 # Create your models here.
 class Delivery(models.Model):
-    order = models.CharField(max_length=32)
     orders= models.OneToOneField(Order, models.PROTECT, null=True)
     date = models.DateTimeField()
     location = models.CharField(max_length=32)
@@ -11,5 +10,5 @@ class Delivery(models.Model):
     status = models.CharField(max_length=32)
     
     def __str__(self):
-        return self.order
+        return f"Order #{self.pk}"
     

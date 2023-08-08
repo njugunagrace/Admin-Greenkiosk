@@ -4,7 +4,7 @@ from .models import Order
 # Register your models here.
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display =("customers","date","products","delivery_options","delivery_date")
+    list_display =("date","delivery_options","delivery_date")
     
 admin.site.register(Order,OrderAdmin)   
     

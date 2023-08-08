@@ -8,6 +8,5 @@ class Cart(models.Model):
     payment_options = models.CharField(max_length=32)
     
     def __str__(self):
-        # return self.name
         return f"Cart #{self.pk}"
     
