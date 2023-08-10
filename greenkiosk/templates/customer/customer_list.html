@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <th>
+            <td>Name</td>
+            <td>Phone number</td>
+            <td>Email Address</td>
+            <td>Address</td>
+        </th>
+        {% for customer in customer %}
+        <tr>
+            <td>{{customer.name}}</td>
+            <td>{{customer.phone_number}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.address}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
