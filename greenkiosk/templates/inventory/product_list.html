@@ -3,29 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .product {
+            background-color: #cabdbd;
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            height: 500px;
+            
+        }
+        .product img {
+            max-width: 100%;
+            height: 50%;
+        }
+        .details a {
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        .details a:hover {
+            background-color: #555;
+        }
+        .add-to-cart {
+            background-color: #4caf50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .add-to-cart:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <title>Product List</title>
 </head>
 <body>
-    <table>
-        <th>
-            <td>Title</td>
-            <td>Description</td>
-            <td>Price</td>
-            <td>Product Details</td>
-            <td>Edit</td>
-
-
-        </th>
+    <div class="navbar">
+        <h1>Mama Mboga Online Store</h1>
+        <a href="{% url 'view_cart_view' %}" class="add-to-cart">View Cart</a>
+    </div>
+    <div class="container">
         {% for product in products %}
-        <tr>
-            <td>{{product.name}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.price}}</td>
-            <td class="details"><a href="{% url 'product_details_view' id=product.id %}"> View product details</a></td>
-            <td><a href="{% url 'edit_product_view' id=product.id %}"><button> EDIT</button></a></td>
-
-        </tr>
+        <div class="product">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h1>{{ product.name }}</h1>
+            <p> Ksh.{{ product.price }}</p>
+            
+            <p class="details"><a href="{% url 'product_details_view' id=product.id %}">View Product Details</a></p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
         {% endfor %}
-    </table>
+    </div>
 </body>
 </html>

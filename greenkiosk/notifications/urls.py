@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import upload_notifications
+from .views import edit_notifications_view, notifications_detail, notifications_list, upload_notifications
 
 urlpatterns = [
     path("notification/upload", upload_notifications, name="product_notifications_view"),
