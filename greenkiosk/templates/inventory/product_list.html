@@ -80,7 +80,8 @@
             <p> Ksh.{{ product.price }}</p>
             
             <p class="details"><a href="{% url 'product_details_view' id=product.id %}">View Product Details</a></p>
-            <button class="add-to-cart">Add to Cart</button>
+
+            <a href="{% url 'upload_cart_view' %}" class="add-to-cart">Add to Cart</a>
         </div>
         {% endfor %}
     </div>

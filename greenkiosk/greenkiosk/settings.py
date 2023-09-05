@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'order_management',
     'shipment',
     'cart',
+    'rest_framework',
     
 ]
 
