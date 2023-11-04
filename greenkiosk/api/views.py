@@ -132,33 +132,29 @@ class CartListView(APIView):
             return Response(serializer.data, status - status.HTTP_201_created)    
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
-class CartDetailView(APIView):
+class AddToCartView(APIView):
     def get(self, request, id, format=None):
         cart = Cart.objects.get(id=id)
         serializer = CartSerializer(cart)
         return Response(serializer.data)
 
-    def post(self, request, id, format=None):
-        cart = Cart.objects.get(id=id)
-        product_id = request.data.get('product_id')
+    def post(self, request, format=None):
+        cart_id = request.date["cart_id"]
+        product_id = request.data["product_id"]
         product = Product.objects.get(id=product_id)
-        cart.products.add(product)
-        cart.save()
-        serializer = CartSerializer(cart)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        cart = Cart.objects.get(id=cart_id)
+        updated_cart= cart.add_product(product)
+        serializer = CartSerializer(updated_cart)
+        return Response(serializer.data)
     
-    # def delete(self, request, id, format = None):
-    #     cart = Cart.objects.get(id = id)
-    #     cart.delete()
-    #     return Response("product deleted" , status = status.HTTP_204_CONTENT_DELETE_) 
 
-    def add_to_cart(self, request, id, product_id):
-        cart = Cart.objects.get(id=id)
-        product = Product.objects.get(id=product_id)
-        cart.products.add(product)
-        cart.save()
-        serializer = CartSerializer(cart)
-        return Response(serializer.data, status=status.HTTP_200_OK)    
+    # def add_to_cart(self, request, id, product_id):
+    #     cart = Cart.objects.get(id=id)
+    #     product = Product.objects.get(id=product_id)
+    #     cart.products.add(product)
+    #     cart.save()
+    #     serializer = CartSerializer(cart)
+    #     return Response(serializer.data, status=status.HTTP_200_OK)    
 
 
     
